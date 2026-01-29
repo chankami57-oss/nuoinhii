@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khả Nhi UwU - Dự án nuôi nhi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+        
+        body { 
+            font-family: 'Itim', cursive; 
+            background-image: url('https://i.pinimg.com/1200x/6c/f8/04/6cf80498c0e8b7abe0d661c60b3937a9.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .pink-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 2px solid #ffd1dc;
+            border-radius: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-btn {
+            position: fixed; top: 20px; right: 20px; z-index: 100;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: #f472b6; border: 3px solid white;
+            color: white; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+        }
+
+        .rotating { animation: rotate 3s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .admin-editable:focus { outline: 2px dashed #ec4899; background: white; border-radius: 12px; padding: 0 5px; }
+/* Popup Mèo Hồng */
+#welcome-popup {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;
+}
+.popup-content {
+    background: white; padding: 25px; border-radius: 35px; border: 4px solid #f472b6;
+    width: 90%; max-width: 320px; text-align: center; position: relative;
+    box-shadow: 0 15px 0 #f472b6; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popUp { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.close-popup { position: absolute; top: 10px; right: 15px; cursor: pointer; color: #f472b6; font-weight: bold; }
+.btn-pink { background: #f472b6; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; margin: 5px; transition: 0.2s; }
+.btn-pink:hover { transform: scale(1.1); background: #db2777; }
+    </style>
+</head>
+<body class="text-gray-800">
+             <div id="welcome-popup">
+    <div class="popup-content">
+        <span class="close-popup" onclick="closePopup()">✖</span>
+        <img src="https://i.pinimg.com/736x/8a/2b/56/8a2b561b30af2c4e7a38435fabe23a7d.jpg" 
+             class="w-32 h-32 object-cover mx-auto mb-4 rounded-2xl border-2 border-pink-200 shadow-sm" alt="mèo hồng">
+        
+        <h3 id="popup-text" class="text-lg font-bold text-pink-600 leading-tight px-2 mb-4">
+            </h3>
+        
+        <div class="flex justify-center gap-2">
+            <button class="btn-pink shadow-md" onclick="closePopup()">Helu</button>
+            <button class="btn-pink shadow-md" onclick="closePopup()">=))</button>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div></div>   
+    <div id="music-control" class="music-btn" onclick="toggleMusic()">
+        <i id="music-icon" class="fa-solid fa-music text-xl"></i>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://files.catbox.moe/hstx6b.mp3" type="audio/mpeg">
+    </audio>
+
+    <header class="max-w-2xl mx-auto pt-12 pb-6 px-6 text-center">
+        <h1 class="text-5xl font-bold text-pink-600 drop-shadow-md">Nuoi/Knhi.net</h1>
+        <p class="text-gray-700 mt-3 italic font-semibold bg-white/50 inline-block px-8 py-2 rounded-full border border-pink-200">
+            "Hãy Cứu Đói Em Nhi ✨"
+        </p>
+    </header>
+
+    <main class="max-w-md mx-auto px-6 space-y-6 pb-24">
+        
+        <section class="pink-card p-6">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-blue-500 uppercase">
+                <i class="fa-solid fa-cookie-bite mr-2"></i> 1. Nuôi Nhi
+            </h2>
+            <div class="space-y-3 bg-white/40 p-5 rounded-[30px] border border-white/50">
+                <p class="text-lg font-medium">Ngân hàng: <span id="bank" class="admin-editable font-bold">MB Bank</span></p>
+                <p class="text-lg font-medium">STK: <span id="stk" class="admin-editable font-bold text-2xl text-pink-500">000200210</span></p>
+                
+                <div class="mt-4 flex flex-col items-center">
+                    <img id="qr-code" src="https://img.vietqr.io/image/mbbank-000200210-print.png" alt="QR Code" class="w-full h-auto rounded-3xl shadow-md border-4 border-white bg-white">
+                    <input type="text" id="qr-url-input" class="hidden mt-3 text-xs w-full p-2 border border-pink-200 rounded-full outline-none" placeholder="Dán link ảnh QR khác...">
+                </div>
+            </div>
+        </section>
+
+        <section class="pink-card p-6">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-pink-500 uppercase">
+                <i class="fa-solid fa-star mr-2"></i> 2. Tìm Nhi ở:
+            </h2>
+            <div class="space-y-4">
+                <div class="flex items-center p-4 bg-white/60 rounded-[25px] border border-indigo-100">
+                    <i class="fa-brands fa-discord text-indigo-500 text-3xl w-12 text-center"></i>
+                    <span class="text-lg ml-2">Discord: <strong id="discord-id" class="admin-editable">kha.nhii</strong></span>
+                </div>
+                
+                <a href="https://www.facebook.com/fzcku.bxtch?locale=vi_VN" target="_blank" class="flex items-center p-4 bg-white/60 rounded-[25px] border border-blue-100 hover:bg-blue-50 transition-all">
+                    <i class="fa-brands fa-facebook text-blue-500 text-3xl w-12 text-center"></i>
+                    <span class="text-lg ml-2 text-blue-600">Facebook: <strong>Khả Nhi</strong></span>
+                </a>
+
+                <a href="https://www.instagram.com/Zouls.here" target="_blank" class="flex items-center p-4 bg-white/60 rounded-[25px] border border-rose-100 hover:bg-rose-50 transition-all">
+                    <i class="fa-brands fa-instagram text-3xl text-pink-500 w-12 text-center"></i>
+                    <span class="text-lg ml-2 text-pink-600">Instagram: <strong>Zouls.here</strong></span>
+                </a>
+            </div>
+        </section>
+
+        <section class="pink-card p-6">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-green-600 uppercase">
+                <i class="fa-solid fa-hand-holding-heart mr-2"></i> 3. Danh Sách
+            </h2>
+            <div id="charity-list" class="admin-editable text-lg text-gray-600 italic bg-white/40 p-5 rounded-[25px]">
+                - No <br> - NO
+            </div>
+        </section>
+
+        <div class="text-center pt-10">
+            <button onclick="toggleAdmin()" class="text-xs font-bold text-white/50 hover:text-white transition">
+                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Admin: f0rsakeN
+            </button>
+            <div id="admin-panel" class="hidden mt-4 space-x-2">
+                <button onclick="saveData()" class="bg-pink-500 text-white px-8 py-2 rounded-full text-sm font-bold shadow-lg">LƯU LẠI</button>
+                <button onclick="exitAdmin()" class="bg-gray-200 text-gray-600 px-6 py-2 rounded-full text-sm font-bold">THOÁT</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function checkVisitor() {
+    const popup = document.getElementById('welcome-popup');
+    const text = document.getElementById('popup-text');
+    const isReturning = localStorage.getItem('visited_knhi');
+
+    if (!isReturning) {
+        // Lần đầu vào
+        text.innerText = "Hello bạn! Bạn có iu quý Khả Nhi hôkkk nhể?";
+        localStorage.setItem('visited_knhi', Date.now()); // Lưu lại thời gian vào
+    } else {
+        // Đã từng vào
+        text.innerText = "Hmmmm... Đã quá lâu rùi bạn hông có vô thăm Khả Nhi đó nka!";
+    }
+}
+
+function closePopup() {
+    document.getElementById('welcome-popup').style.display = 'none';
+}
+
+// Chạy kiểm tra ngay khi mở trang
+window.addEventListener('load', checkVisitor);
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-control');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().catch(e => console.log("Cần click chuột để phát nhạc!"));
+                musicBtn.classList.add('rotating');
+            } else {
+                music.pause();
+                musicBtn.classList.remove('rotating');
+            }
+        }
+
+        function toggleAdmin() {
+            const pass = prompt("NHẬP MẬT MÃ:");
+            if (pass === "f0rsakeNxyzyqsdniduqwdjnqsjnjjknjnhbduhab") {
+                document.querySelectorAll('.admin-editable').forEach(el => el.contentEditable = "true");
+                document.getElementById('admin-panel').classList.remove('hidden');
+                document.getElementById('qr-url-input').classList.remove('hidden');
+            } else { alert("Sai rùi đừng cố zô chỉ nhi mới cóa quyền cưng à!"); }
+        }
+
+        function saveData() {
+            const data = {
+                stk: document.getElementById('stk').innerText,
+                bank: document.getElementById('bank').innerText,
+                discord: document.getElementById('discord-id').innerText,
+                charity: document.getElementById('charity-list').innerHTML,
+                qrUrl: document.getElementById('qr-url-input').value
+            };
+            localStorage.setItem('knhi_final_fixed_v4', JSON.stringify(data));
+            if(data.qrUrl) document.getElementById('qr-code').src = data.qrUrl;
+            alert("Đã ghi nhớ thông tin mới!");
+            exitAdmin();
+        }
+
+        function exitAdmin() {
+            document.querySelectorAll('.admin-editable').forEach(el => el.contentEditable = "false");
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('qr-url-input').classList.add('hidden');
+        }
+
+        window.onload = function() {
+            const saved = JSON.parse(localStorage.getItem('knhi_final_fixed_v4'));
+            if (saved) {
+                document.getElementById('stk').innerText = saved.stk;
+                document.getElementById('bank').innerText = saved.bank;
+                document.getElementById('discord-id').innerText = saved.discord;
+                document.getElementById('charity-list').innerHTML = saved.charity;
+                if(saved.qrUrl) document.getElementById('qr-code').src = saved.qrUrl;
+            }
+        };
+    </script>
+</body>
+</html>
