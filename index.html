@@ -10,28 +10,30 @@
         @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
         
         body { 
-            font-family: 'Comfortaa', cursive; 
+            font-family: 'Itim', cursive; 
             background-image: url('https://i.pinimg.com/1200x/6c/f8/04/6cf80498c0e8b7abe0d661c60b3937a9.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
+            /* Đổi màu chữ mặc định toàn trang sang hồng đậm pastel */
+            color: #d46a7e; 
         }
 
         .pink-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
-            border: 2px solid #ffd1dc;
+            border: 2px solid #ffdae0;
             border-radius: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
         }
 
         .music-btn {
             position: fixed; top: 20px; right: 20px; z-index: 100;
             width: 50px; height: 50px; border-radius: 50%;
-            background: #f472b6; border: 3px solid white;
+            background: #ffb6c1; border: 3px solid white;
             color: white; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+            cursor: pointer; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
         }
 
         .rotating { animation: rotate 3s linear infinite; }
@@ -40,28 +42,32 @@
         /* Popup Mèo Hồng */
         #welcome-popup {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;
+            background: rgba(255, 192, 203, 0.3); display: flex; align-items: center; justify-content: center; z-index: 1000;
         }
         .popup-content {
-            background: white; padding: 25px; border-radius: 35px; border: 4px solid #f472b6;
+            background: white; padding: 25px; border-radius: 35px; border: 4px solid #ffb6c1;
             width: 90%; max-width: 320px; text-align: center; position: relative;
-            box-shadow: 0 15px 0 #f472b6; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 0 #ffb6c1; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         @keyframes popUp { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        .close-popup { position: absolute; top: 10px; right: 15px; cursor: pointer; color: #f472b6; font-weight: bold; }
-        .btn-pink { background: #f472b6; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; margin: 5px; transition: 0.2s; }
-        .btn-pink:hover { transform: scale(1.1); background: #db2777; }
+        .close-popup { position: absolute; top: 10px; right: 15px; cursor: pointer; color: #ffb6c1; font-weight: bold; }
+        .btn-pink { background: #ffb6c1; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; margin: 5px; transition: 0.2s; border: none; }
+        .btn-pink:hover { transform: scale(1.1); background: #f4a4b1; }
+
+        /* Ghi đè màu Tailwind sang Pastel Pink */
+        .text-pastel-pink { color: #f48fb1; }
+        .text-dark-pink { color: #ad4d5f; }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-[#d46a7e]">
 
     <div id="welcome-popup">
         <div class="popup-content">
             <span class="close-popup" onclick="closePopup()">✖</span>
             <img src="https://i.pinimg.com/736x/8a/2b/56/8a2b561b30af2c4e7a38435fabe23a7d.jpg" 
                  class="w-32 h-32 object-cover mx-auto mb-4 rounded-2xl border-2 border-pink-200 shadow-sm" alt="mèo hồng">
-            <h3 id="popup-text" class="text-lg font-bold text-pink-600 leading-tight px-2 mb-4"></h3>
+            <h3 id="popup-text" class="text-lg font-bold text-[#f48fb1] leading-tight px-2 mb-4"></h3>
             <div class="flex justify-center gap-2">
                 <button class="btn-pink shadow-md" onclick="closePopup()">Helu</button>
                 <button class="btn-pink shadow-md" onclick="closePopup()">=))</button>
@@ -77,8 +83,8 @@
     </audio>
 
     <header class="max-w-2xl mx-auto pt-12 pb-6 px-6 text-center">
-        <h1 class="text-5xl font-bold text-pink-600 drop-shadow-md">Nuoi/Knhi.net</h1>
-        <p class="text-gray-700 mt-3 italic font-semibold bg-white/50 inline-block px-8 py-2 rounded-full border border-pink-200">
+        <h1 class="text-5xl font-bold text-[#ff8fa3] drop-shadow-md">Nuoi/Knhi.net</h1>
+        <p class="text-[#ad4d5f] mt-3 italic font-semibold bg-white/60 inline-block px-8 py-2 rounded-full border border-pink-100">
             "Hãy Cứu Đói Em Nhi ✨"
         </p>
     </header>
@@ -86,54 +92,65 @@
     <main class="max-w-md mx-auto px-6 space-y-6 pb-24">
         
         <section class="pink-card p-6">
-            <h2 class="flex items-center text-xl font-bold mb-4 text-blue-500 uppercase">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-[#f48fb1] uppercase">
                 <i class="fa-solid fa-cookie-bite mr-2"></i> 1. Nuôi Nhi
             </h2>
             <div class="space-y-3 bg-white/40 p-5 rounded-[30px] border border-white/50 text-center">
-                <p class="text-lg font-medium">Ngân hàng: <span class="font-bold">MB Bank</span></p>
-                <p class="text-lg font-medium">STK: <span class="font-bold text-2xl text-pink-500">000200210</span></p>
+                <p class="text-lg font-medium text-[#ad4d5f]">Ngân hàng: <span class="font-bold">MB Bank</span></p>
+                <p class="text-lg font-medium text-[#ad4d5f]">STK: <span class="font-bold text-2xl text-[#ff8fa3]">000200210</span></p>
                 <div class="mt-4">
                     <img src="https://img.vietqr.io/image/mbbank-000200210-print.png" alt="QR Code" class="w-full h-auto rounded-3xl shadow-md border-4 border-white bg-white">
                 </div>
             </div>
         </section>
 
-        <section class="pink-card p-6">
-            <h2 class="flex items-center text-xl font-bold mb-4 text-pink-500 uppercase">
-                <i class="fa-solid fa-star mr-2"></i> 2. Tìm Nhi ở:
+        <section class="pink-card p-6 border-b-4 border-pink-200">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-[#f48fb1] uppercase">
+                <i class="fa-solid fa-house-chimney mr-2"></i> Ngôi nhà nhỏ của mình
             </h2>
-            <div class="space-y-4">
-                <div class="flex items-center p-4 bg-white/60 rounded-[25px] border border-indigo-100">
-                    <i class="fa-brands fa-discord text-indigo-500 text-3xl w-12 text-center"></i>
-                    <span class="text-lg ml-2">Discord: <strong>kha.nhii</strong></span>
-                </div>
-                
-                <a href="https://www.facebook.com/fzcku.bxtch" target="_blank" class="flex items-center p-4 bg-white/60 rounded-[25px] border border-blue-100 hover:bg-blue-50 transition-all">
-                    <i class="fa-brands fa-facebook text-blue-500 text-3xl w-12 text-center"></i>
-                    <span class="text-lg ml-2 text-blue-600 font-bold">Facebook: Khả Nhi</span>
-                </a>
-
-                <a href="https://www.instagram.com/Zouls.here" target="_blank" class="flex items-center p-4 bg-white/60 rounded-[25px] border border-rose-100 hover:bg-rose-50 transition-all">
-                    <i class="fa-brands fa-instagram text-3xl text-pink-500 w-12 text-center"></i>
-                    <span class="text-lg ml-2 text-pink-600 font-bold">Instagram: Zouls.here</span>
+            <div class="bg-white/50 p-4 rounded-[25px] text-center border border-pink-50 shadow-inner">
+                <p class="mb-4 text-[#ad4d5f] italic">Vào đây chơi cùng Nhi và mọi người nhé!</p>
+                <a href="https://discord.gg/NuCehSe9F8" target="_blank" class="flex items-center justify-center p-4 bg-[#ffb6c1] text-white rounded-[20px] hover:bg-[#f4a4b1] transition-all shadow-lg font-bold">
+                    <i class="fa-brands fa-discord mr-2 text-2xl"></i> Tham gia Discord
                 </a>
             </div>
         </section>
 
         <section class="pink-card p-6">
-            <h2 class="flex items-center text-xl font-bold mb-4 text-green-600 uppercase">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-[#f48fb1] uppercase">
+                <i class="fa-solid fa-star mr-2"></i> 2. Tìm Nhi ở:
+            </h2>
+            <div class="space-y-4">
+                <div class="flex items-center p-4 bg-white/60 rounded-[25px] border border-pink-100">
+                    <i class="fa-brands fa-discord text-[#f48fb1] text-3xl w-12 text-center"></i>
+                    <span class="text-lg ml-2 text-[#ad4d5f]">Discord: <strong>kha.nhii</strong></span>
+                </div>
+                
+                <a href="https://www.facebook.com/fzcku.bxtch" target="_blank" class="flex items-center p-4 bg-white/60 rounded-[25px] border border-pink-100 hover:bg-pink-50 transition-all">
+                    <i class="fa-brands fa-facebook text-[#f48fb1] text-3xl w-12 text-center"></i>
+                    <span class="text-lg ml-2 text-[#ad4d5f] font-bold">Facebook: Khả Nhi</span>
+                </a>
+
+                <a href="https://www.instagram.com/Zouls.here" target="_blank" class="flex items-center p-4 bg-white/60 rounded-[25px] border border-pink-100 hover:bg-pink-50 transition-all">
+                    <i class="fa-brands fa-instagram text-3xl text-[#f48fb1] w-12 text-center"></i>
+                    <span class="text-lg ml-2 text-[#ad4d5f] font-bold">Instagram: Zouls.here</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="pink-card p-6">
+            <h2 class="flex items-center text-xl font-bold mb-4 text-[#f48fb1] uppercase">
                 <i class="fa-solid fa-hand-holding-heart mr-2"></i> 3. Đã quăng vào mặt nhi:
             </h2>
-            <div class="text-lg text-gray-600 italic bg-white/40 p-5 rounded-[25px] text-center">
+            <div class="text-lg text-[#ad4d5f] italic bg-white/40 p-5 rounded-[25px] text-center">
                 Yuha đại đế: 1.000.000.000.000 vnd 
-                ... ✨
+                <br> ... ✨
             </div>
         </section>
 
     </main>
 
     <script>
-        // Xử lý Popup Chào Mừng
         function checkVisitor() {
             const popup = document.getElementById('welcome-popup');
             const text = document.getElementById('popup-text');
@@ -151,7 +168,6 @@
             document.getElementById('welcome-popup').style.display = 'none';
         }
 
-        // Điều khiển nhạc
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-control');
 
@@ -165,10 +181,7 @@
             }
         }
 
-        // Chạy khi trang web tải xong
         window.addEventListener('load', checkVisitor);
     </script>
 </body>
 </html>
-
-
